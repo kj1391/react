@@ -3,15 +3,28 @@ import logo from './imgies/logo.png'
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './css/login.less'
+
+
 const {Item} =Form
 
-
-
-
 export default class Login extends Component {
-  onFinish = (values) =>{
-    console.log('Received values of form:',values)
-  };
+
+	onFinish = values => {
+	
+		console.log('Received values of form :',values);
+	};
+
+	
+	pwdValidator = (_,value="")=>{
+		let errMsgArr = []
+		if(!value.trim()) return Promise.reject('密码必须输入！')
+		if(value.length < 4) errMsgArr.push('密码必须大于等于4位')
+		if(value.length > 12)errMsgArr.push('密码必须小于等于12位')
+		if(!(/^\w+$/).test(value)) errMsgArr.push('密码必须是英文、数字、下划线组成！')
+		if(errMsgArr.length !== 0) return Promise.reject(errMsgArr)
+		else return Promise.resolve()
+	}
+	
   
   render() {
     return (
