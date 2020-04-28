@@ -17,9 +17,9 @@ export default class Login extends Component {
 	
 	pwdValidator = (_,value="")=>{
 		let errMsgArr = []
-		if(!value.trim()) return Promise.reject('密码必须输入！')
-		if(value.length < 4) errMsgArr.push('密码必须大于等于4位')
-		if(value.length > 12)errMsgArr.push('密码必须小于等于12位')
+		if(!value.trim()) return Promise.reject('不输入密码你怎么登录！')
+		if(value.length < 4) errMsgArr.push('想啥呢，大于四位')
+		if(value.length > 12)errMsgArr.push('又想啥呢，都超过12位了')
 		if(!(/^\w+$/).test(value)) errMsgArr.push('密码必须是英文、数字、下划线组成！')
 		if(errMsgArr.length !== 0) return Promise.reject(errMsgArr)
 		else return Promise.resolve()
