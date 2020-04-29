@@ -3,17 +3,24 @@ import logo from './imgies/logo.png'
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './css/login.less'
+import ajax from '../../api/ajax'
 
-
+/*
+						用户名/密码的的合法性要求
+							1). 必须输入
+							2). 必须大于等于4位
+							3). 必须小于等于12位
+							4). 必须是英文、数字、下划线组成
+						*/
 const {Item} =Form
 
 export default class Login extends Component {
 
-	onFinish = values => {
-	
-		console.log('Received values of form :',values);
+	onFinish = async values => {
+		let result = await ajax.post('http://localhost:3000/login',values)
+     console.log(result);
+     
 	};
-
 	
 	pwdValidator = (_,value="")=>{
 		let errMsgArr = []
